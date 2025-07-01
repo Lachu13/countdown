@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color:yellow;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      color: black;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .box {
+      background: #222;
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-size: 30px;
+    }
+
+    .label {
+      font-size: 16px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Countdown to New Year 2026 ...!</h1>
+
+<div class="countdown">
+  <div class="box">
+    <div id="days">0</div>
+    <div class="label">Days</div>
+  </div>
+  <div class="box">
+    <div id="hours">0</div>
+    <div class="label">Hours</div>
+  </div>
+  <div class="box">
+    <div id="minutes">0</div>
+    <div class="label">Minutes</div>
+  </div>
+  <div class="box">
+    <div id="seconds">0</div>
+    <div class="label">Seconds</div>
+  </div>
+</div>
+
+<script>
+  const targetDate = new Date("January 1, 2026 00:00:00").getTime();
+
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const gap = targetDate - now;
+
+    const sec = 1000;
+    const min = sec * 60;
+    const hr = min * 60;
+    const day = hr * 24;
+
+    const d = Math.floor(gap / day);
+    const h = Math.floor((gap % day) / hr);
+    const m = Math.floor((gap % hr) / min);
+    const s = Math.floor((gap % min) / sec);
+
+    document.getElementById("days").innerHTML = d;
+    document.getElementById("hours").innerHTML = h;
+    document.getElementById("minutes").innerHTML = m;
+    document.getElementById("seconds").innerHTML = s;
+  };
+
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
